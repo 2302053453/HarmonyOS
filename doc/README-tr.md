@@ -21,3 +21,6 @@ Ve gelecekte tamamen `hongmeng` mimarisi olacaktır.
 - [2019] Huawei iddaa ettiğine göre  1 milyon akıllı telefonda `HarmonyOS` işletim sistemi test edilmeye hazır.
 - [2019.5.17] Huawei işletim sistemi takımı kendi tescilli işletim sistemi olan `HarmonyOS` geliştirdi.
 - [2019.8.9]  Huawei resmi olarak `HarmonyOS` ismiyle duyurdu ve `HarmonyOS` açık kaynak olacaktır.
+
+# Ⅲ . Özellikler
+![](../assets/img/harmony/features.png)
