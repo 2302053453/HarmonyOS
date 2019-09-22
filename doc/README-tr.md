@@ -77,3 +77,18 @@ Yeni güncellemeler cihazlar arasında uygulanır. Huawei Ark Derleyici, Android
 - [LiteOS](/src/LiteOS/README.md)
 - [ABI] Application Binary Interface
 - [EABI] Embedded Application Binary Interface
+
+## 4. Donanım Sürücüleri
+- [Cihaz Uygunlukları]
+- [Standartlar & Protokoller] 
+- [Donanım Kalite Özellikleri]
+- [Sürücü Geliştirme Kitleri]
+- [Sürücü Örnekleri]
+- [Hata ayıklama Araçları]
+- [Güvenlik]
+- [5 inci Jenerasyon Sürücü ve yazılım]
+- [Boot ve UEFI]
+- [ACPI/SoC]
+- [Wi-Fi]
+- [USB]
+- [Yazıcı]
