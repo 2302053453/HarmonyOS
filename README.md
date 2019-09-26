@@ -1,6 +1,6 @@
 # HarmonyOS
 
-[English Docs](README.md)|[中文文档](doc/README-zh.md)
+[English Docs](README.md)|[中文文档](doc/README-zh.md)|  [Türkçe Dökümanlar](doc/README-tr.md)
 
 ----
 
