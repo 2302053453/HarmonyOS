@@ -56,14 +56,14 @@
 
 INLINE UINT32 osCheckBoxMem(const LOS_MEMBOX_INFO *pstBoxInfo, const VOID *pNode)
 {
-    UINT32 uwOffSet;
+    
 
     if (pstBoxInfo->uwBlkSize == 0)
     {
         return LOS_NOK;
     }
 
-    uwOffSet = ((UINT32)pNode - (UINT32)(pstBoxInfo + 1));
+    UINT32 uwOffSet = ((UINT32)pNode - (UINT32)(pstBoxInfo + 1));
     if ((uwOffSet % pstBoxInfo->uwBlkSize) != 0)
     {
         return LOS_NOK;
@@ -81,25 +81,15 @@ LITE_OS_SEC_TEXT_INIT UINT32 LOS_MemboxInit(VOID *pPool, UINT32 uwBoxSize, UINT3
  {
     LOS_MEMBOX_INFO *pstBoxInfo = (LOS_MEMBOX_INFO *)pPool;
     LOS_MEMBOX_NODE *pstNode = (LOS_MEMBOX_NODE *)NULL;
-    UINT32 i;
-    UINTPTR uvIntSave;
+    
+     
 
-    if (pPool == NULL)
+    if (pPool == NULL || uwBlkSize == 0 || uwBoxSize < sizeof(LOS_MEMBOX_INFO))
     {
         return LOS_NOK;
     }
 
-    if (uwBlkSize == 0)
-    {
-        return LOS_NOK;
-    }
-
-    if (uwBoxSize < sizeof(LOS_MEMBOX_INFO))
-    {
-        return LOS_NOK;
-    }
-
-    uvIntSave = LOS_IntLock();
+    UINTPTR uvIntSave = LOS_IntLock();
     pstBoxInfo->uwBlkSize = LOS_MEMBOX_ALLIGNED(uwBlkSize + LOS_MEMBOX_MAGIC_SIZE);
     pstBoxInfo->uwBlkNum = ((uwBoxSize - sizeof(LOS_MEMBOX_INFO)) /pstBoxInfo->uwBlkSize);
 
@@ -113,7 +103,7 @@ LITE_OS_SEC_TEXT_INIT UINT32 LOS_MemboxInit(VOID *pPool, UINT32 uwBoxSize, UINT3
 
     pstBoxInfo->stFreeList.pstNext = pstNode;
 
-    for (i = 0; i < pstBoxInfo->uwBlkNum - 1; ++i)
+    for (UINT32 i = 0; i < pstBoxInfo->uwBlkNum - 1; ++i)
     {
         pstNode->pstNext = OS_MEMBOX_NEXT(pstNode, pstBoxInfo->uwBlkSize);
         pstNode = pstNode->pstNext;
@@ -131,14 +121,14 @@ LITE_OS_SEC_TEXT VOID *LOS_MemboxAlloc(VOID *pPool)
     LOS_MEMBOX_INFO *pstBoxInfo = (LOS_MEMBOX_INFO *)pPool;
     LOS_MEMBOX_NODE *pstNode = (LOS_MEMBOX_NODE *)NULL;
     LOS_MEMBOX_NODE *pstRet = (LOS_MEMBOX_NODE *)NULL;
-    UINTPTR uvIntSave;
+    
 
     if (pPool == NULL)
     {
         return NULL;
     }
 
-    uvIntSave = LOS_IntLock();
+    UINTPTR uvIntSave = LOS_IntLock();
     pstNode = &(pstBoxInfo->stFreeList);
     if (pstNode->pstNext != NULL)
     {
@@ -156,14 +146,14 @@ LITE_OS_SEC_TEXT UINT32 LOS_MemboxFree(VOID *pPool, VOID *pBox)
 {
     LOS_MEMBOX_INFO *pstBoxInfo = (LOS_MEMBOX_INFO *)pPool;
     UINT32 uwRet = LOS_NOK;
-    UINTPTR uvIntSave;
+    
 
     if (pPool == NULL || pBox == NULL)
     {
         return LOS_NOK;
     }
 
-    uvIntSave = LOS_IntLock();
+    UINTPTR uvIntSave = LOS_IntLock();
     do
     {
         LOS_MEMBOX_NODE *pstNode = OS_MEMBOX_NODE_ADDR(pBox);
